@@ -3,7 +3,7 @@ from datetime import datetime
 
 import pytest
 
-from src.utils import get_database, change_date_to_datetime_type
+from src.utils import get_database, change_date_to_datetime_type, sort_database_by_date
 
 
 def test_get_database():
@@ -19,3 +19,13 @@ def test_get_database():
 ])
 def test_change_date_to_datetime_type(array, result):
     assert change_date_to_datetime_type(array) == result
+
+
+@pytest.mark.parametrize('origin_lst, sorted_lst', [
+    ([{'date': datetime(2019, 8, 26, 10, 50, 58, 0)},
+      {'date': datetime(2018, 4, 4, 17, 33, 34, 0)}],
+     [{'date': datetime(2018, 4, 4, 17, 33, 34, 0)},
+      {'date': datetime(2019, 8, 26, 10, 50, 58, 0)}])
+            ])
+def test_sort_database_by_date(origin_lst, sorted_lst):
+    assert sort_database_by_date(origin_lst) == sorted_lst

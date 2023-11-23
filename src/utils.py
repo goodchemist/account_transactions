@@ -30,3 +30,13 @@ def change_date_to_datetime_type(lst):
             lst[i]['date'] = date_formatted
             new_lst.append(lst[i])
     return new_lst
+
+
+def sort_database_by_date(database_lst):
+    """
+    sort database by the key 'date'
+    :param database_lst: list of dictionaries
+    :return: sorted list of dictionaries by key='date'
+    """
+    database_sorted = sorted(database_lst, key=lambda x: x['date'])
+    return database_sorted
