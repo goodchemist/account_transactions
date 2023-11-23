@@ -7,4 +7,6 @@ database_in_list = get_database(path_to_file)
 
 database_formatted = change_date_to_datetime_type(database_in_list)
 
+database_executed = delete_canceled_operations(database_formatted)
+
 database_sorted = sort_database_by_date(database_formatted)

@@ -3,7 +3,7 @@ from datetime import datetime
 
 import pytest
 
-from src.utils import get_database, change_date_to_datetime_type, sort_database_by_date
+from src.utils import get_database, change_date_to_datetime_type, sort_database_by_date, delete_canceled_operations
 
 
 def test_get_database():
@@ -29,3 +29,7 @@ def test_change_date_to_datetime_type(array, result):
             ])
 def test_sort_database_by_date(origin_lst, sorted_lst):
     assert sort_database_by_date(origin_lst) == sorted_lst
+
+
+def test_delete_canceled_operations():
+    assert delete_canceled_operations([{"state": "CANCELED"}, {"state": "EXECUTED"}]) == [{"state": "EXECUTED"}]

@@ -40,3 +40,13 @@ def sort_database_by_date(database_lst):
     """
     database_sorted = sorted(database_lst, key=lambda x: x['date'])
     return database_sorted
+
+
+def delete_canceled_operations(database):
+    """
+    delete canceled operations in database with all operations
+    :param database: list of dictionaries
+    :return: list of dictionaries with only executed operations
+    """
+    database_executed = [operation for operation in database if operation['state'] == "EXECUTED"]
+    return database_executed
