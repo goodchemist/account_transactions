@@ -23,10 +23,9 @@ def change_date_to_datetime_type(lst):
     """
     new_lst = []
     for i in range(0, len(lst)):
-        data_str = lst[i].get('date', None)
-        if data_str:
-            date_, time_ = data_str.split('T')
-            date_formatted = datetime.fromisoformat(date_ + ' ' + time_)
+        date_str = lst[i].get('date')
+        if date_str:
+            date_formatted = datetime.fromisoformat(date_str)
             lst[i]['date'] = date_formatted
             new_lst.append(lst[i])
     return new_lst
