@@ -50,3 +50,20 @@ def delete_canceled_operations(database):
     """
     database_executed = [operation for operation in database if operation['state'] == "EXECUTED"]
     return database_executed
+
+
+def encode_invoice(invoice):
+    """
+    encode invoice or card number using '*'
+    :param invoice: invoice or card with all digits
+    :return: invoice with the last 4 digit or card with first 6 and last 4 digits
+    """
+    invoice_lst = invoice.split(' ')
+    if invoice_lst[0].capitalize() == 'Счет':
+        invoice_lst[1] = '**' + invoice_lst[1][-4:]
+    else:
+        for i in range(1, len(invoice_lst)):
+            if invoice_lst[i].isdigit():
+                invoice_lst[i] = invoice_lst[i][:4] + ' ' + invoice_lst[i][4:6] + '** **** ' + invoice_lst[i][-4:]
+    result = ' '.join(invoice_lst)
+    return result
